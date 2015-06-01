@@ -350,7 +350,8 @@ reference "eq:pd3"
 \series bold
 random effect (RE) model
 \series default
-, which makes the additional assumptions that 
+/one-way individual-specific random effects model/random intercept model,
+ which makes the additional assumptions that 
 \begin_inset Formula 
 \begin{eqnarray}
 \alpha_{i} & \sim & \left[\alpha,\sigma_{\alpha}^{2}\right]\label{eq:pd5}\\
@@ -359,8 +360,14 @@ random effect (RE) model
 
 \end_inset
 
-so that both the random effects and the error term in (21.3) are assumed
- to be iid
+so that both the random effects and the error term in (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd3"
+
+\end_inset
+
+) are assumed to be iid
 \end_layout
 
 \end_body

@@ -348,7 +348,8 @@ reference "eq:pd3"
  are random variables that are distributed independently of the regressors.
  This model is called the 
 \series bold
-random effect (RE) model
+random effect (RE) model/one-way individual-specific random effects model/random
+ intercept model
 \series default
 , which makes the additional assumptions that 
 \begin_inset Formula 
