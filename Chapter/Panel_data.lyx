@@ -367,7 +367,63 @@ reference "eq:pd3"
 
 \end_inset
 
-) are assumed to be iid
+) are assumed to be iid.
+\end_layout
+
+\begin_layout Paragraph
+Equicorrelated Model
+\end_layout
+
+\begin_layout Standard
+The RE model can be viewed as a specialization of the pooled model as the
+ 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ can be subsumed into the error term.
+ Now 
+\begin_inset Formula $u_{it}=\alpha_{i}+\varepsilon_{it}$
+\end_inset
+
+ and (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd5"
+
+\end_inset
+
+) implies that 
+\begin_inset Formula 
+\begin{eqnarray}
+Cov\left[\left(\alpha_{i}+\varepsilon_{it}\right),\left(\alpha_{i}+\varepsilon_{is}\right)\right] & = & \begin{cases}
+\sigma_{\alpha}^{2} & t\neq s\\
+\sigma_{\alpha}^{2}+\sigma_{\varepsilon}^{2} & t=s
+\end{cases}\label{eq:pd8}
+\end{eqnarray}
+
+\end_inset
+
+The RE imposes the constraint that 
+\begin_inset Formula $u_{it}$
+\end_inset
+
+ is equicorrelated, since
+\begin_inset Formula 
+\begin{eqnarray*}
+Corr\left[u_{it},u_{is}\right] & = & \frac{Cov\left[u_{it},u_{is}\right]}{SD\left[u_{it}\right]SD\left[u_{is}\right]}=\frac{\sigma_{\alpha}^{2}}{\sigma_{\alpha}^{2}+\sigma_{\varepsilon}^{2}}
+\end{eqnarray*}
+
+\end_inset
+
+for 
+\begin_inset Formula $t\neq s$
+\end_inset
+
+ does not vary with the time difference 
+\begin_inset Formula $t-s$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Paragraph
@@ -548,6 +604,231 @@ reference "eq:pd1"
 
  is sufficient for consistency.
  
+\end_layout
+
+\begin_layout Subsubsection
+Lest-squares Dummy Variable Estimator
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $N$
+\end_inset
+
+ is not too large, an alternative and simpler way to compute thw within
+ estimator is by LSDV estimation, which directly estimates model (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd2"
+
+\end_inset
+
+) by OLS regression of 
+\begin_inset Formula $y_{it}$
+\end_inset
+
+ on 
+\begin_inset Formula $\bm{x}_{it}$
+\end_inset
+
+ and the 
+\begin_inset Formula $N$
+\end_inset
+
+ individual dummy variables and yields the within estimator for 
+\begin_inset Formula $\bm{\beta}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Within Estimator
+\end_layout
+
+\begin_layout Standard
+Begin with the individual-specific effects model (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd3"
+
+\end_inset
+
+).
+ Taking the average over time yields 
+\begin_inset Formula $\bar{y}_{i}=\alpha_{i}+\overline{\bm{x}}_{i}^{\prime}\bm{\beta}+\bar{\varepsilon}_{i}$
+\end_inset
+
+.
+ Subtracting this from 
+\begin_inset Formula $y_{it}$
+\end_inset
+
+ in model (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd3"
+
+\end_inset
+
+) yields the 
+\series bold
+within model
+\series default
+
+\begin_inset Formula 
+\begin{eqnarray}
+y_{it}-\bar{y}_{i} & = & \left(\bm{x}_{it}-\bar{\bm{x}}_{i}\right)^{\prime}\bm{\beta}+\left(\varepsilon_{it}-\bar{\varepsilon}_{i}\right),\;i=1,\dots,N,\:t=1,\dots,T\label{eq:pd6}
+\end{eqnarray}
+
+\end_inset
+
+The 
+\series bold
+within estimator 
+\series default
+is the OLS estimator in within model (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd6"
+
+\end_inset
+
+) and it yields consistent estimates of 
+\begin_inset Formula $\bm{\beta}$
+\end_inset
+
+ in the fiexed effets model.
+\end_layout
+
+\begin_layout Standard
+A major limitation of within estimation is that the coefficients of time-invaria
+nt regressors are not identified since if 
+\begin_inset Formula $x_{it}=x_{i}$
+\end_inset
+
+, then 
+\begin_inset Formula $\bar{x}_{i}=x_{i}$
+\end_inset
+
+, so 
+\begin_inset Formula $\left(x_{it}-\bar{x}_{i}\right)=0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Between Estimator
+\end_layout
+
+\begin_layout Standard
+The between estimator in short panels instead uses just the cross-sectional
+ variation.
+ Averageing over all years yields 
+\begin_inset Formula $\bar{y}_{i}=\alpha_{i}+\overline{\bm{x}}_{it}^{\prime}\bm{\beta}+\bar{\varepsilon}_{i}$
+\end_inset
+
+, which can be rewritten as the 
+\series bold
+between model
+\series default
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\bar{y}_{i} & = & \alpha+\overline{\bm{x}}_{i}^{\prime}\bm{\beta}+\left(\alpha_{i}-\alpha+\bar{\varepsilon}_{i}\right)
+\end{eqnarray*}
+
+\end_inset
+
+The 
+\series bold
+between estimator 
+\series default
+is the OLS estimator from regression of 
+\begin_inset Formula $\bar{y}_{i}$
+\end_inset
+
+ on an intercept and 
+\begin_inset Formula $\overline{\bm{x}}_{i}^{\prime}$
+\end_inset
+
+.
+ It uses variation between different individuals.
+ 
+\end_layout
+
+\begin_layout Standard
+The between estimator is consistent if 
+\begin_inset Formula $\overline{\bm{x}}_{i}^{\prime}$
+\end_inset
+
+ are independent of the error 
+\begin_inset Formula $\left(\alpha_{i}-\alpha+\bar{\varepsilon}_{i}\right)$
+\end_inset
+
+.
+ For FE model, however, between estimator is inconsistent as 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ is assumed to be correlated with 
+\begin_inset Formula $\bm{x}_{it}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+First-Differences Estimator
+\end_layout
+
+\begin_layout Standard
+Lagging one period of model (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd3"
+
+\end_inset
+
+) yields 
+\begin_inset Formula $y_{it-1}=\alpha_{i}+\bm{x}_{it-1}^{\prime}\bm{\beta}+\varepsilon_{it-1}$
+\end_inset
+
+.
+ Subtracting this from 
+\begin_inset Formula $y_{it}$
+\end_inset
+
+ yields the 
+\series bold
+first-differences model
+\begin_inset Formula 
+\begin{eqnarray}
+y_{it}-y_{i,t-1} & = & \left(\bm{x}_{it}-\bm{x}_{i,t-1}\right)^{\prime}\bm{\beta}+\left(\varepsilon_{it}-\varepsilon_{i,t-1}\right),\;i=1,\dots,N,\:t=1,\dots,T\label{eq:pd7}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+first-differences estimator 
+\series default
+is the OLS estimator in (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd7"
+
+\end_inset
+
+).
+ This estimator yields consistent estimates in the fixed effects model,
+ though the coefficients of time-invariant regressors are not identified.
 \end_layout
 
 \end_body
