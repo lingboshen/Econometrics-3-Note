@@ -348,10 +348,10 @@ reference "eq:pd3"
  are random variables that are distributed independently of the regressors.
  This model is called the 
 \series bold
-random effect (RE) model
+random effect (RE) model/one-way individual-specific random effects model/random
+ intercept model
 \series default
-/one-way individual-specific random effects model/random intercept model,
- which makes the additional assumptions that 
+, which makes the additional assumptions that 
 \begin_inset Formula 
 \begin{eqnarray}
 \alpha_{i} & \sim & \left[\alpha,\sigma_{\alpha}^{2}\right]\label{eq:pd5}\\
@@ -368,6 +368,110 @@ reference "eq:pd3"
 \end_inset
 
 ) are assumed to be iid
+\end_layout
+
+\begin_layout Paragraph
+FE versus RE Models
+\end_layout
+
+\begin_layout Standard
+We use notation 
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{it} & = & c_{i}+\bm{x}_{it}^{\prime}\bm{\beta}+\varepsilon_{it}
+\end{eqnarray*}
+
+\end_inset
+
+The individual effect is a random variable in both fixed and random effects
+ models.
+ Both models assume that 
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{E}\left[y_{it}\mid c_{i},\bm{x}_{it}\right] & = & c_{i}+\bm{x}_{it}^{\prime}\bm{\beta}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The individual-specific effect 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ is unknown and in short panels cannot be consistently estimated, so we
+ cannot estimate 
+\begin_inset Formula $\mathbb{E}\left[y_{it}\mid c_{i},\bm{x}_{it}\right]$
+\end_inset
+
+.
+ Then we eliminate 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{E}\left[y_{it}\mid\bm{x}_{it}\right] & = & \mathbb{E}\left[c_{i}\mid\bm{x}_{it}\right]+\bm{x}_{it}^{\prime}\bm{\beta}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+For the RE model we assume 
+\begin_inset Formula $\mathbb{E}\left[c_{i}\mid\bm{x}_{it}\right]=\alpha$
+\end_inset
+
+, so that 
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbb{E}\left[y_{it}\mid\bm{x}_{it}\right] & = & \alpha+\bm{x}_{it}^{\prime}\bm{\beta}
+\end{eqnarray*}
+
+\end_inset
+
+and hence it is possible to identify 
+\begin_inset Formula $\mathbb{E}\left[y_{it}\mid\bm{x}_{it}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+For FE model 
+\begin_inset Formula $\mathbb{E}\left[c_{i}\mid\bm{x}_{it}\right]$
+\end_inset
+
+ varies with 
+\begin_inset Formula $\bm{x}_{it}$
+\end_inset
+
+, and it is not known how it varies, so we cannot identify 
+\begin_inset Formula $\mathbb{E}\left[y_{it}\mid\bm{x}_{it}\right]$
+\end_inset
+
+.
+ However, we can estimate 
+\begin_inset Formula $\bm{\beta}$
+\end_inset
+
+ with short panels.
+ Thus, it is possible in the FE model to identify the marginal effect
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{\beta} & = & \frac{\partial\mathbb{E}\left[y_{it}\mid c_{i},\bm{x}_{it}\right]}{\partial\bm{x}_{it}}
+\end{eqnarray*}
+
+\end_inset
+
+even the conditional mean is not identified.
+ For not time-varying regressors, e.g.
+ race or gender, the marginal effect 
 \end_layout
 
 \end_body
