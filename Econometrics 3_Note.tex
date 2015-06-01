@@ -1,0 +1,467 @@
+\documentclass{article}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{commath}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\usepackage{indentfirst}
+\usepackage[margin=3.5cm]{geometry}
+\linespread{1.45}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green]{hyperref}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\DeclareMathOperator*{\plim}{plim}
+
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newenvironment{enumeratenumeric}{\begin{enumerate}[1.] }{\end{enumerate}}
+\newenvironment{enumerateroman}{\begin{enumerate}[i.] }{\end{enumerate}}
+%\newenvironment{proof}{\noindent\textbf{Proof\ }}{\hspace*{\fill}$\Box$\medskip}
+%%%%%%%%%% End TeXmacs macros
+
+\newcommand{\x}{\bm{x}}
+
+
+\newcommand*{\MyPath}{./Chapter}
+
+
+\begin{document}
+
+
+
+
+\title{Time Series Note}
+\author{Lingbo Shen}
+\maketitle
+
+\tableofcontents
+\newpage
+
+%model
+\input{\MyPath/ch1}
+
+%lag operator
+\input{\MyPath/ch2}
+
+%arma
+\input{\MyPath/ch3}
+
+%asymptotic for stationary
+\input{\MyPath/ch4}
+
+
+
+
+%unit root
+\input{\MyPath/ch6}
+
+
+%var
+\input{\MyPath/ch8}
+
+\begin{comment}
+\end{comment}
+
+
+
+\section[Trends and Unit Roots]{Trends and Unit Roots}
+\subsection{The Random Walk Model}
+Consider the following special case AR(1) process:
+\begin{eqnarray*}
+y_{t}&=&y_{t-1}+u_{t}\\
+\Delta y_{t}&=&u_{t}
+\end{eqnarray*}
+
+If $y_{0}$ is a given initial condition, its solution is
+\begin{eqnarray*}
+y_{t}&=&y_{0}+\sum_{i=1}^{t}u_{i}
+\end{eqnarray*}
+
+Take expectation
+\begin{eqnarray*}
+Ey_{t}&=& E\left(y_{0}+\sum_{i=1}^{t}u_{i}\right)=y_{0}
+\end{eqnarray*}
+Taking expectation and variance
+\begin{eqnarray*}
+E_{t}y_{t+1}&=&E_{t}\left(y_{t}+\varepsilon_{t+1}\right)=y_{t}\\
+E_{t}y_{t+s}&=&E_{t}\left(y_{t}+\sum_{i=1}^{s}\varepsilon_{t+i}\right)=y_{t}\\
+Var(y_{t})&=&Var\left(\sum_{i=1}^{t}u_{i}\right)=t\sigma^{2}\\
+Var(y_{t-s})&=&Var\left(\sum_{i=1}^{t-s}u_{i}\right)=(t-s)\sigma^{2}\\
+E\left[(y_{t}-y_{0})(y_{t-s}-y_{0})\right]&=&E\left[(\sum_{i=1}^{t}u_{i} )(\sum_{i=1}^{t+s}u_{i})\right]\\
+								&=&E\left[(\sum_{i=1}^{t-s}u_{i}^{2} )\right]\\
+								&=&(t-s)\sigma^{2}
+\end{eqnarray*}
+
+The correlation coefficient $\rho_{s}$ is
+\begin{eqnarray*}
+\rho_{s}&=&\frac{(t-s)\sigma^{2}}{\sqrt{(t-s)\sigma^{2}}\times \sqrt{t\sigma^{2}}}\\
+&=&\sqrt{\frac{t-s}{t}}
+\end{eqnarray*}
+
+When $t$ is big relative to s, the $\rho_{s}$  are close to unity and decay very slowly. 
+
+\paragraph{The Random Walk plus Drift Model}
+Adding a constant term $a_{0}$:
+\begin{eqnarray*}
+y_{t}&=&y_{t-1}+a_{0}+u_{t}
+\end{eqnarray*}
+
+Giving the initial condition $y_{0}$, its solution is
+\begin{eqnarray*}
+y_{t}&=&y_{0}+a_{0}t+\sum_{i=1}^{t}u_{i}
+\end{eqnarray*}
+
+The behavior of $y_{t}$ is governed by two nonstationary components: a linear deterministic trend and the stochastic trend. 
+
+\subsection{Function Spaces}
+\begin{itemize}
+\item $x$: an element of $C$, that is, any continuous curve traversing the unit interval, be denoted.
+\item Coordinates of $x$: $x(r)\in\mathbb{R}$ is the unique values of $x$ at points $r\in[0,1]$ are called the coordinates of $x$.
+\end{itemize}
+
+For two members of $C$, $x\in C$ and $y\in C$, we need to say how close together they are. Technically, $C$ must be assigned a metric. For example, we can define \textbf{Euclidean metric} for any pair of real numbers $x$ and $y$ as $d_{E}(x,y)=|x-y|$. The pair $(\mathbb{R},d_{E})$ is known as the \textbf{Euclidean space}. 
+ 
+We also can define a metric called \textbf{uniform metric} as 
+\begin{eqnarray*}
+d_{U}(x,y)&=&\sup_{0\leq r\leq 1}|x(r)-y(r)|
+\end{eqnarray*}
+This is just the \textit{largest vertical separation} between the pair of functions over the interval. $(C,d_{U})$ is a metric space. 
+
+\subsection{Brownian Motion}
+A Brownian motion $B$ is a real random function on the unit interval, with the following properties:
+\begin{enumerate}
+\item $B\in C$ with probability 1.
+\item $B(0)=0$ with probability 1.
+\item for any set of subintervals defined by arbitrary $0\leq r_{1}<r_{2}<\dots<r_{k}\leq 1$, the increments $B(r_{1}$, $B(r_{2})-B(r_{1}$, $\cdots$, $B(r_{k})-B(r_{k-1})$ are independent.
+\item $B(t)-B(s)\sim N(0,t-s)$ for $0\leq s<t\leq 1$.
+\end{enumerate}
+
+\subsection{The Functional Central Limit Theorem}
+We construct a variable $X_{T}(r)$ from the sample mean of the first $r$th fraction of the observations, $r\in[0,1]$, defined by
+\begin{eqnarray*}
+X_{T}(r)&\equiv&\frac{1}{T}\sum_{t=1}^{[Tr]}u_{t}
+\end{eqnarray*}
+For any given realization, $X_{T}(r)$ is a step function in $r$, with
+\begin{eqnarray*}
+X_{T}(r)&=&\begin{cases}
+0						&	0\leq r<1/T\\
+\frac{u_{1}}{T}				&	1/T\leq r<2/T\\
+\frac{u_{1}+u_{2}}{T}		&	2/T\leq r<3/T\\
+\vdots					&				\\
+\frac{u_{1}+u_{2}+\cdots+u_{T-1}}{T}		&	(T-1)/T\leq r<1\\
+\frac{u_{1}+u_{2}+\cdots+u_{T-1}+u_{T}}{T}		&	r=1\\
+\end{cases}
+\end{eqnarray*}
+Then 
+\begin{eqnarray*}
+\sqrt{T}X_{T}(r)&=&\sqrt{T}\frac{1}{T}\sum_{t=1}^{[Tr]}u_{t}\\
+			&=&\frac{1}{\sqrt{T}}\sum_{t=1}^{[Tr]}u_{t}\\
+			&=&\frac{\sqrt{[Tr]}}{\sqrt{T}}\frac{1}{\sqrt{[Tr]}}\sum_{t=1}^{[Tr]}u_{t}\\
+			&\approx_{d}&\sqrt{r} N(0,\sigma^{2})\\
+			&\sim&N(0,r\sigma^{2})
+\end{eqnarray*}
+The last second comes from the facts that $\frac{\sqrt{[Tr]}}{\sqrt{T}}\to \sqrt{r}$ and $\frac{1}{\sqrt{[Tr]}}\sum_{t=1}^{[Tr]}u_{t}\approx_{d}N(0,\sigma^{2})$.
+
+If we consider a sample mean based on observations $[Tr_{1}]$ through $[Tr_{2}]$ for $r_{2}>r_{1}$, we would conclude that 
+\begin{eqnarray*}
+\sqrt{T}\left[X_{T}(r_{2})-X_{T}(r_{2})\right]/\sigma&\approx&N(0,r_{2}-r_{1})
+\end{eqnarray*}
+
+It should not be surprising that the sequence of stochastic functions $\left\{\sqrt{T}X_{T}(\cdot)/\sigma\right\}_{T=1}^{\infty}$ has an asymptotic probability law that is described by standard Brownian motion
+\begin{eqnarray*}
+\sqrt{T}X_{T}(\cdot)/\sigma&\to&W(\cdot)
+\end{eqnarray*}
+This result is called \textit{functional central limit theorem}.
+\begin{remark}
+We should notice the difference between $X_{T}(\cdot)$ and $X_{T}(r)$. $X_{T}(\cdot)$ denotes a random function while $X_{T}(r)$ denotes the value that function assumes at date $r$; thus, $X_{T}(\cdot)$ is a function, while $X_{T}(r)$ is a random variable.
+\end{remark}
+
+\paragraph{Convergence in law for random functions}
+Let $S(\cdot)$ be a continuous-time stochastic process with $S(r)$ representing its value at time date $r$ for $r\in [0,1]$. Suppose that for any given realization $S(\cdot)$ is a continuous function of $r$ with probability 1. 
+\begin{definition}
+For $\left\{S_{T}(\cdot)\right\}_{T=1}^{\infty}$ a sequence of such continuous functions, we say that $S_{T}(\cdot)\xrightarrow{L}S(\cdot)$ if all of the following hold:
+\begin{enumerate}
+\item For any finite collection of $k$ particular dates $0\leq r_{1}<r_{2}<\cdots<r_{k}\leq 1$, the sequence of $k-$dimensional random vectors $\{\bm{y}_{T}\}_{T=1}^{\infty}$ converges in distribution to the vector $\bm{y}$, where 
+	\begin{eqnarray*}
+	\bm{y}_{T}\equiv\left[\begin{array}{c}
+	S_{T}(r_{1})\\
+	S_{T}(r_{2})\\
+	\vdots\\
+	S_{T}(r_{k})\\
+	\end{array}\right]
+	&&
+	\bm{y}\equiv\left[\begin{array}{c}
+	S(r_{1})\\
+	S(r_{2})\\
+	\vdots\\
+	S(r_{k})\\
+	\end{array}\right]
+	\end{eqnarray*}
+\item For each $\varepsilon>0$, the probability that $S_{T}(r_{1})$ differs from $S_{T}(r_{2})$ for any dates $r_{1}$ and  $r_{2}$ within $\delta$ of each other goes to zero uniformly in $T$ as $\delta\to 0$.
+\item $P\{|S_{T}(0)|>\lambda\}\to 0$ uniformly in $T$ as $\lambda\to\infty$.
+\end{enumerate}
+\end{definition}
+\begin{remark}
+This definition applies to sequences of continuous functions, though the function $X_{T}(r)$ is a discontinuous step function. Fortunately, the discontinuities occur at a countable set of points.
+\end{remark}
+\paragraph{Convergence in probability to sequences of random functions} Let $\left\{S_{T}(\cdot)\right\}_{T=1}^{\infty}$ and $\left\{V_{T}(\cdot)\right\}_{T=1}^{\infty}$ denote sequences of random continuous functions with $S_{T}:r\in [0,1]\to\mathbb{R}^{1}$ and $V_{T}:r\in [0,1]\to\mathbb{R}^{1}$. Let the scalar $Y_{T}$ represent the largest amount by which $S_{T}(r)$ differs from $V_{T}(r)$ for any $r$ defined by
+\begin{eqnarray*}
+Y_{T}&\equiv&\sup_{0\leq r\leq 1}|S_{T}(r)-V_{T}(r)|
+\end{eqnarray*}
+\begin{definition}
+If the sequence of scalars $\left\{Y_{T}(\cdot)\right\}_{T=1}^{\infty}$ converges in probability to zero, then we say that the sequence of functions $S_{T}(\cdot)$ converges in probability to $V_{T}(\cdot)$. That is, the expression
+\begin{eqnarray*}
+S_{T}(\cdot)&\to_{p}&V_{T}(\cdot)
+\end{eqnarray*}
+is interpreted to mean that
+\begin{eqnarray*}
+\sup_{r\in[0,1]}|S_{T}(r)-V_{T}(r)|&\to_{p}&0
+\end{eqnarray*}
+\end{definition}
+
+
+\paragraph{Continuous mapping theorem}
+The result is similar to Slutsky's theorem. 
+\begin{theorem}
+The continuous mapping theorem states that if $S_{T}(\cdot)\xrightarrow{L}S(\cdot)$ and $g(\cdot)$ is a continuous \textbf{functional}, then $g\left(S_{T}(\cdot)\right)\xrightarrow{L}g\left(S(\cdot)\right)$.
+\end{theorem}
+For example, consider $S_{T}(r)\equiv [\sqrt{T}X_{T}(r)]^{2}$ and $\sqrt{T}X_{T}(r)\xrightarrow{L}\sigma W(\cdot)$. It follows that
+\begin{eqnarray*}
+S_{T}(\cdot)&\xrightarrow{L}&\sigma^{2}[W(\cdot)]^{2}
+\end{eqnarray*}
+
+\subsection{Unit Root Processes}
+A random walk $y_{t}=y_{t-1}+u_{t}$ where $\{u_{t}\}$ is an i.i.d. sequence with zero mean and variance $\sigma^{2}$. If $y_{0}=0$, then 
+\begin{eqnarray*}
+y_{t}=u_{1}+u_{2}+\cdots+u_{t}
+\end{eqnarray*}
+The stochastic function $X_{T}(r)$ defined as
+\begin{eqnarray*}
+X_{T}(r)&=&\begin{cases}
+0						&	0\leq r<1/T\\
+\frac{y_{1}}{T}				&	1/T\leq r<2/T\\
+\frac{y_{2}}{T}				&	2/T\leq r<3/T\\
+\vdots					&				\\
+\frac{y_{T-1}}{T}			&	(T-1)/T\leq r<1\\
+\frac{y_{T}}{T}				&	r=1\\
+\end{cases}
+\end{eqnarray*}
+The figure below plots $X_{T}(r)$ as a function of $r$. The area under this step function is the sum of $T$ rectangles. The integral of $X_{T}(r)$ is thus equivalent to 
+\begin{eqnarray*}
+\int_{0}^{1}X_{T}(r)dr&=&\frac{y_{1}}{T^{2}}+\frac{y_{2}}{T^{2}}+\cdots+\frac{y_{T-1}}{T^{2}}
+\end{eqnarray*}
+Then we have
+\begin{center}
+\definecolor{xdxdff}{rgb}{0.490196078431,0.490196078431,1.}
+\definecolor{uuuuuu}{rgb}{0.266666666667,0.266666666667,0.266666666667}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.66,-1.02) rectangle (8.94,6);
+\draw [->] (0.,0.) -- (0.,5.);
+\node at (0,5.3) {$X_{T}(r)$};
+\node at (8,-0.3) {$r$};
+\draw [->] (0.,0.) -- (8.,0.);
+
+\begin{scriptsize}
+\draw [fill=uuuuuu] (0.,0.) ;
+\draw [fill=xdxdff] (0.,6.) ;
+\draw [fill=xdxdff] (8.,0.) ;
+\draw (1,0) rectangle (2,3);
+\node at (1,-0.3) {$\frac{1}{T}$};
+\node at (1.5,1.3) {$\frac{y_{1}}{T}$};
+\draw (2,0) rectangle (3,2.3);
+\node at (2,-0.3) {$\frac{2}{T}$};
+\node at (2.5,1.3) {$\frac{y_{2}}{T}$};
+\draw (3,0) rectangle (4,3.2);
+\node at (3,-0.3) {$\frac{3}{T}$};
+\node at (3.5,1.3) {$\frac{y_{3}}{T}$};
+\draw (4,0) rectangle (5,2.7);
+\node at (4,-0.3) {$\frac{4}{T}$};
+\draw (5,0) rectangle (6,3.5);
+\node at (5,-0.3) {$\cdots$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+
+\begin{eqnarray*}
+\int_{0}^{1}\sqrt{T}X_{T}(r)dr&=&\sqrt{T}\left[\frac{y_{1}}{T^{2}}+\frac{y_{2}}{T^{2}}+\cdots+\frac{y_{T-1}}{T^{2}}\right]\\
+						&=&T^{-3/2}\sum_{t=1}^{T}y_{t-1}
+\end{eqnarray*}
+By functional central limit theorem and continuous mapping theorem that as $T\to\infty$
+\begin{eqnarray*}
+\int_{0}^{1}\sqrt{T}X_{T}(r)dr&\xrightarrow{L}&\sigma\int_{0}^{1}W(r)dr
+\end{eqnarray*}
+which implies that
+\begin{eqnarray}
+\label{eq6.1}
+T^{-3/2}\sum_{t=1}^{T}y_{t-1}&\xrightarrow{L}&\sigma\int_{0}^{1}W(r)dr
+\end{eqnarray}
+
+We can write
+\begin{eqnarray}
+\label{eq6.2}
+\nonumber
+T^{-3/2}\sum_{t=1}^{T}y_{t-1}&=&T^{-3/2}\left[u_{1}+(u_{1}+u_{2})+\cdots+(u_{1}+u_{2}+\cdots+u_{T-1})\right]\\\nonumber
+	&=&T^{-3/2}\left[(T-1)u_{1}+(T-2)u_{2}+\cdots u_{T-1}\right]\\\nonumber
+	&=&T^{-3/2}\sum_{t=1}^{T}(T-t)u_{t}\\
+	&=&T^{-1/2}\sum_{t=1}^{T}u_{t}-T^{-3/2}\sum_{t=1}^{T}tu_{t}
+\end{eqnarray}
+
+From (\ref{eq6.2}), we can derive
+\begin{eqnarray}
+\label{eq6.3}
+\nonumber
+T^{-3/2}\sum_{t=1}^{T}tu_{t}&=&T^{-1/2}\sum_{t=1}^{T}u_{t}-T^{-3/2}\sum_{t=1}^{T}y_{t-1}\\
+	&\to_{d}&\sigma W(1)-\sigma\int_{0}^{1}W(r)dr
+\end{eqnarray}
+
+\begin{theorem}
+In summary, for random walk without drift $y_{t}=y_{t-1}+u_{t}$ where $y_{0}=0$ and $\{u_{t}\}$ is an i.i.d. sequence with mean zero and variance $\sigma^{2}$. Then we have
+
+\begin{eqnarray}
+\label{eq6.4}
+T^{-1/2}\sum_{t=1}^{T}u_{t}&\xrightarrow{L}&\sigma W(1)\\
+\label{eq6.5}
+T^{-1}\sum_{t=1}^{T}y_{t-1}u_{t}&\xrightarrow{L}&\frac{1}{2}\sigma^{2} [W(1)^{2}-1]\\
+\label{eq6.6}
+T^{-3/2}\sum_{t=1}^{T}tu_{t}&\xrightarrow{L}&\sigma W(1)-\sigma\int_{0}^{1}W(r)dr\\
+\label{eq6.7}
+T^{-3/2}\sum_{t=1}^{T}y_{t-1}&\xrightarrow{L}&\sigma\int_{0}^{1}W(r)dr\\
+\label{eq6.8}
+T^{-2}\sum_{t=1}^{T}y_{t-1}^{2}&\xrightarrow{L}&\sigma^{2}\int_{0}^{1}W(r)^{2}dr\\
+\label{eq6.9}
+T^{-5/2}\sum_{t=1}^{T}ty_{t-1}&\xrightarrow{L}&\sigma\int_{0}^{1}rW(r)dr\\
+\label{eq6.10}
+T^{-3}\sum_{t=1}^{T}ty_{t-1}^{2}&\xrightarrow{L}&\sigma^{2}\int_{0}^{1}rW(r)^{2}dr\\
+\label{eq6.11}
+T^{-(v+1)}\sum_{t=1}^{T}t^{v}&\to&\frac{1}{v+1},\ \ \ v\in \mathbb{N}
+\end{eqnarray}
+\end{theorem}
+
+\begin{proof}
+(\ref{eq6.4}) is trivial. (\ref{eq6.6}) is shown in (\ref{eq6.3}). (\ref{eq6.7}) is shown in (\ref{eq6.1}). Now we prove the remaining properties. 
+
+We define $S_{T}(r)$ as 
+\begin{eqnarray*}
+S_{T}(r)&=&\left(\sqrt{T}X_{T}(r)\right)^{2}=T[X_{T}(r)]^{2}
+\end{eqnarray*}
+Then it can be written as a step function 
+\begin{eqnarray*}
+S_{T}(r)&=&\begin{cases}
+0							&	0\leq r<1/T\\
+\frac{y_{1}^{2}}{T}				&	1/T\leq r<2/T\\
+\frac{y_{2}^{2}}{T}				&	2/T\leq r<3/T\\
+\vdots						&				\\
+\frac{y_{T-1}^{2}}{T}			&	(T-1)/T\leq r<1\\
+\frac{y_{T}^{2}}{T}				&	r=1\\
+\end{cases}
+\end{eqnarray*}
+Then we have
+\begin{eqnarray}
+\label{eq4.12}
+\int_{0}^{1}S_{T}(r)dr&=&\frac{y_{1}^{2}}{T^{2}}+\frac{y_{2}^{2}}{T^{2}}+\cdots+\frac{y_{T-1}^{2}}{T^{2}}=T^{-2}\sum_{t=1}^{T}y_{t-1}^{2}\xrightarrow{L}\sigma^{2}\int_{0}^{1}W(r)^{2}dr
+\end{eqnarray}
+Now we show (\ref{eq6.8}).
+
+For (\ref{eq6.9}), we prove as
+\begin{eqnarray*}
+T^{-5/2}\sum_{t=1}^{T}ty_{t-1}&=&T^{-3/2}\sum_{t=1}^{T}\frac{t}{T}y_{t-1}\xrightarrow{L}\sigma\int_{0}^{1}rW(r)dr
+\end{eqnarray*}
+for $r=t/T$.
+
+For (\ref{eq6.10})
+\begin{eqnarray*}
+T^{-3}\sum_{t=1}^{T}ty_{t-1}^{2}&=&T^{-2}\sum_{t=1}^{T}(t/T)y_{t-1}^{2}\xrightarrow{L}\sigma^{2}\int_{0}^{1}rW(r)^{2}dr
+\end{eqnarray*}
+For (\ref{eq6.5})
+\begin{eqnarray*}
+T^{-1}\sum_{t=1}^{T}y_{t-1}u_{t}&=&\frac{1}{2}\frac{1}{T}y_{T}^{2}-\frac{1}{2}\frac{1}{T}\sum_{t=1}^{T}u_{t}^{2}\\
+&=&\frac{1}{2}S_{T}(1)-\frac{1}{2}\frac{1}{T}\sum_{t=1}^{T}u_{t}^{2}\\
+&\xrightarrow{L}&\frac{1}{2}\sigma^{2}[W(1)]^{2}-\frac{1}{2}\sigma^{2}\\
+&\xrightarrow{L}&\frac{1}{2}\sigma^{2} [W(1)^{2}-1]
+\end{eqnarray*}
+\end{proof}
+
+\subsubsection{No Constant No Time Trend}
+Consider OLS estimation of $\rho$ based on an AR(1) regression
+\begin{eqnarray}
+\label{eq4.13}
+y_{t}&=&\rho y_{t-1}+u_{t}
+\end{eqnarray}
+where $u_{t}$ is i.i.d. with mean zero and variance $\sigma^{2}$. OLS estimate is
+\begin{eqnarray*}
+\hat{\rho}_{T}&=&\frac{\sum_{t=1}^{T}y_{t-1}y_{t}}{\sum_{t=1}^{T}y_{t-1}^{2}}
+\end{eqnarray*}
+when true value of $\rho$ is 1. Then we have
+\begin{eqnarray*}
+T\left(\hat{\rho}_{T}-1\right)&=&\frac{T^{-1}\sum_{t=1}^{T}y_{t-1}u_{t}}{T^{-2}\sum_{t=1}^{T}y_{t-1}^{2}}
+\end{eqnarray*}
+For random walk process $y_{t}=y_{0}+u_{1}+u_{2}+\cdots+u_{t}$, apart from the initial term $y_{0}$, by (\ref{eq6.5})
+$$T^{-1}\sum_{t=1}^{T}y_{t-1}u_{t}\xrightarrow{L}\frac{1}{2}\sigma^{2} [W(1)^{2}-1]$$
+and by (\ref{eq6.8})
+$$T^{-2}\sum_{t=1}^{T}y_{t-1}^{2}\xrightarrow{L}\sigma^{2}\int_{0}^{1}W(r)^{2}dr$$
+Under the null hypothesis that $\rho=1$, the OLS estimate is characterized by
+\begin{eqnarray*}
+T\left(\hat{\rho}_{T}-1\right)&=&\frac{T^{-1}\sum_{t=1}^{T}y_{t-1}u_{t}}{T^{-2}\sum_{t=1}^{T}y_{t-1}^{2}}\xrightarrow{L}\frac{\frac{1}{2}[W(1)^{2}-1]}{\int_{0}^{1}W(r)^{2}dr}
+\end{eqnarray*}
+$[W(1)]^{2}$ is a $\chi^{2}(1)$ variable. 
+
+
+\subsubsection{Constant No Time Trend}
+The DGP is still $y_{t}=y_{t-1}+u_{t}$. Suppose now that a constant term is included in the AR(1) model that is to be estimated by OLS
+\begin{eqnarray*}
+y_{t}&=&\alpha+\rho y_{t-1}+u_{t}
+\end{eqnarray*}
+
+
+\subsubsection{No Constant No Time Trend}
+
+\subsection{Dickey-Fuller Tests}
+
+\subsubsection{Serial Correlation}
+When $\varepsilon_{t}$ is serially correlated, two approaches are developed. 
+Subtracting $y_{t-1}$ from each side of the equation $y_{t}=a_{1}y_{t-1}+u_{t}$, we get $\Delta y_{t}=\gamma y_{t-1}+u_{t}$, where $\gamma=a_{1}-1$. Testing the hypothesis $a_{1}=1$ is equivalent to testing $\gamma=0$.
+
+Dickey and Fuller consider three different regression equations 
+\begin{eqnarray*}
+&&\mbox{random walk model}\\
+\Delta y_{t}&=&\gamma y_{t-1}+u_{t} \\
+&&  \mbox{add a drift}\\
+\Delta y_{t}&=&a_{0}+\gamma y_{t-1}+u_{t}\\
+&&\mbox{add a drift and linear time trend}\\
+\Delta y_{t}&=&a_{0}+\gamma y_{t-1}+a_{2}t+u_{t} 
+\end{eqnarray*}
+
+Run the OLS and get the estimated value of $\gamma$ and associated standard error of these three models. However, the critical values of the t-statistics do depend on whether a drift and/or time trend is included in \textbf{regression models}. Note that the appropriate critical values depend on \textbf{sample size}. For any given level of significance, the critical values of the t-statistic decrease as sample size increases. 
+
+\subsection{Augmented Dicker-Fuller test}
+Consider the pth-order autoregressive process:
+\begin{eqnarray*}
+y_{t}&=&a_{0}+a_{1}y_{t-1}+a_{2}y_{t-2}+a_{3}y_{t-3}+\cdots+a_{p-2}y_{t-p+2}+a_{p-1}y_{t-p+1}+a_{p}y_{t-p}+u_{t}
+\end{eqnarray*}
+jj
+Add and subtract $a_{p}y_{t-p+1}$
+\begin{eqnarray*}
+y_{t}&=&a_{0}+a_{1}y_{t-1}+a_{2}y_{t-2}+\cdots+a_{p-2}y_{t-p+2}+a_{p-1}y_{t-p+1}+a_{p}y_{t-p+1}+a_{p}y_{t-p}-a_{p}y_{t-p+1}+u_{t}\\
+	&=&a_{0}+a_{1}y_{t-1}+a_{2}y_{t-2}+\cdots+a_{p-2}y_{t-p+2}+(a_{p-1}+a_{p})y_{t-p+1}-a_{p}\Delta y_{t-p+1}+u_{t}
+\end{eqnarray*}
+
+Add and subtract $(a_{p-1}+a_{p})y_{t-p+2}$
+\begin{eqnarray*}
+y_{t}&=&a_{0}+\cdots+a_{p-2}y_{t-p+2}+(a_{p-1}+a_{p})y_{t-p+2}+(a_{p-1}+a_{p})y_{t-p+1}-(a_{p-1}+a_{p})y_{t-p+2}-a_{p}\Delta y_{t-p+1}+u_{t}\\
+	&=&a_{0}+\cdots+(a_{p-2}+a_{p-1}+a_{p})y_{t-p+2}-(a_{p-1}+a_{p})\Delta y_{t-p+2}-a_{p}\Delta y_{t-p+1}+u_{t}
+\end{eqnarray*}
+
+Continuing in this fashion, we get
+\begin{eqnarray*}
+\Delta y_{t}&=&a_{0}+\gamma y_{t-1}+\sum_{i=1}^{p}\beta_{i}\Delta y_{t-i+1}+u_{t}\\
+where\ \ \gamma&=& -\left( 1-\sum_{i=1}^{p}a_{i}\right)\\
+	\beta_{i}&=& \sum_{j=i}^{p}a_{j}
+\end{eqnarray*}
+
+We can use the same Dickey-Fuller statistics which depends on the regression models and sample size.
+\end{document}

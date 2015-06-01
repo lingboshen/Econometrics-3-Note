@@ -1,0 +1,445 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\left[\begin{array}{c}
+\hat{\text{\alpha}_{T}}\\
+\hat{\rho}_{T}
+\end{array}\right] & = & \left[\begin{array}{cc}
+T & \sum y_{t-1}\\
+\sum y_{t-1} & \sum y_{t-1}^{2}
+\end{array}\right]^{-1}\left[\begin{array}{c}
+\sum y_{t}\\
+\sum y_{t-1}y_{t}
+\end{array}\right]\\
+\left[\begin{array}{c}
+\hat{\text{\alpha}_{T}}-0\\
+\hat{\rho}_{T}-1
+\end{array}\right] & = & \left[\begin{array}{cc}
+T & \sum y_{t-1}\\
+\sum y_{t-1} & \sum y_{t-1}^{2}
+\end{array}\right]^{-1}\left[\begin{array}{c}
+\sum u_{t}\\
+\sum y_{t-1}u_{t}
+\end{array}\right]\\
+ & by\\
+\sum y_{t-1} & = & O_{p}\left(T^{3/2}\right)\\
+\sum y_{t-1}u_{t} & = & O_{p}\left(T\right)\\
+\sum y_{t-1}^{2} & = & O_{p}\left(T^{2}\right)\\
+\sum u_{t} & = & O_{p}\left(T^{1/2}\right)\\
+\left[\begin{array}{c}
+\hat{\text{\alpha}_{T}}\\
+\hat{\rho}_{T}-1
+\end{array}\right] & = & \left[\begin{array}{cc}
+O_{p}\left(T\right) & O_{p}\left(T^{3/2}\right)\\
+O_{p}\left(T^{3/2}\right) & O_{p}\left(T^{2}\right)
+\end{array}\right]^{-1}\left[\begin{array}{c}
+O_{p}\left(T^{1/2}\right)\\
+O_{p}\left(T\right)
+\end{array}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is clear that the estimates 
+\begin_inset Formula $\hat{\text{\alpha}_{T}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\rho}$
+\end_inset
+
+ have different rates of convergence.
+ A scaling matrix 
+\begin_inset Formula $Y_{T}$
+\end_inset
+
+ is helpful in describing limiting distributions.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+Y_{T}\left[\begin{array}{c}
+\hat{\text{\alpha}_{T}}\\
+\hat{\rho}_{T}-1
+\end{array}\right] & = & Y_{T}\left[\begin{array}{cc}
+T & \sum y_{t-1}\\
+\sum y_{t-1} & \sum y_{t-1}^{2}
+\end{array}\right]^{-1}\left[\begin{array}{c}
+\sum u_{t}\\
+\sum y_{t-1}u_{t}
+\end{array}\right]\\
+ & = & Y_{T}\left[\begin{array}{cc}
+T & \sum y_{t-1}\\
+\sum y_{t-1} & \sum y_{t-1}^{2}
+\end{array}\right]^{-1}Y_{T}Y_{T}^{-1}\left[\begin{array}{c}
+\sum u_{t}\\
+\sum y_{t-1}u_{t}
+\end{array}\right]\\
+ & = & \left\{ Y_{T}^{-1}\left[\begin{array}{cc}
+T & \sum y_{t-1}\\
+\sum y_{t-1} & \sum y_{t-1}^{2}
+\end{array}\right]Y_{T}^{-1}\right\} ^{-1}\left\{ Y_{T}^{-1}\left[\begin{array}{c}
+\sum u_{t}\\
+\sum y_{t-1}u_{t}
+\end{array}\right]\right\} \\
+ & = & \left\{ Y_{T}^{-1}\left[\begin{array}{cc}
+T & \sum y_{t-1}\\
+\sum y_{t-1} & \sum y_{t-1}^{2}
+\end{array}\right]Y_{T}^{-1}\right\} ^{-1}\left\{ Y_{T}^{-1}\left[\begin{array}{c}
+\sum u_{t}\\
+\sum y_{t-1}u_{t}
+\end{array}\right]\right\} \\
+ & = & \left\{ \left[\begin{array}{cc}
+T^{-1/2} & 0\\
+0 & T^{-1}
+\end{array}\right]\left[\begin{array}{cc}
+T & \sum y_{t-1}\\
+\sum y_{t-1} & \sum y_{t-1}^{2}
+\end{array}\right]\left[\begin{array}{cc}
+T^{-1/2} & 0\\
+0 & T^{-1}
+\end{array}\right]\right\} ^{-1}\\
+ &  & \times\left\{ \left[\begin{array}{cc}
+T^{-1/2} & 0\\
+0 & T^{-1}
+\end{array}\right]\left[\begin{array}{c}
+\sum u_{t}\\
+\sum y_{t-1}u_{t}
+\end{array}\right]\right\} \\
+\left[\begin{array}{c}
+T^{1/2}\hat{\text{\alpha}_{T}}\\
+T\left(\hat{\rho}_{T}-1\right)
+\end{array}\right] & = & \left[\begin{array}{cc}
+1 & T^{-3/2}\sum y_{t-1}\\
+T^{-3/2}\sum y_{t-1} & T`^{-2}\sum y_{t-1}^{2}
+\end{array}\right]^{-1}\left[\begin{array}{c}
+T^{-1/2}\sum u_{t}\\
+T^{-1}\sum y_{t-1}u_{t}
+\end{array}\right]\\
+ & with\\
+\left[\begin{array}{cc}
+1 & T^{-3/2}\sum y_{t-1}\\
+T^{-3/2}\sum y_{t-1} & T`^{-2}\sum y_{t-1}^{2}
+\end{array}\right] & \xrightarrow{L} & \left[\begin{array}{cc}
+1 & \sigma\int W(r)dr\\
+\sigma\int W(r)dr & \sigma^{2}\int W(r)^{2}dr
+\end{array}\right]\\
+ & = & \left[\begin{array}{cc}
+1 & 0\\
+0 & \sigma
+\end{array}\right]\left[\begin{array}{cc}
+1 & \int W(r)dr\\
+\int W(r)dr & \int W(r)^{2}dr
+\end{array}\right]\left[\begin{array}{cc}
+1 & 0\\
+0 & \sigma
+\end{array}\right]\\
+\left[\begin{array}{c}
+T^{-1/2}\sum u_{t}\\
+T^{-1}\sum y_{t-1}u_{t}
+\end{array}\right] & \xrightarrow{L} & \left[\begin{array}{c}
+\sigma W(1)\\
+\frac{1}{2}\sigma^{2}\left[W(1)^{2}-1\right]
+\end{array}\right]\\
+ & = & \sigma\left[\begin{array}{cc}
+1 & 0\\
+0 & \sigma
+\end{array}\right]\left[\begin{array}{c}
+W(1)\\
+\frac{1}{2}\left[W(1)^{2}-1\right]
+\end{array}\right]\\
+ & \Longrightarrow\\
+\left[\begin{array}{c}
+T^{1/2}\hat{\text{\alpha}_{T}}\\
+T\left(\hat{\rho}_{T}-1\right)
+\end{array}\right] & \xrightarrow{L} & \left[\begin{array}{cc}
+1 & 0\\
+0 & \sigma
+\end{array}\right]^{-1}\left[\begin{array}{cc}
+1 & \int W(r)dr\\
+\int W(r)dr & \int W(r)^{2}dr
+\end{array}\right]^{-1}\left[\begin{array}{cc}
+1 & 0\\
+0 & \sigma
+\end{array}\right]^{-1}\\
+ &  & \times\sigma\left[\begin{array}{cc}
+1 & 0\\
+0 & \sigma
+\end{array}\right]\left[\begin{array}{c}
+W(1)\\
+\frac{1}{2}\left[W(1)^{2}-1\right]
+\end{array}\right]\\
+ & = & \sigma\left[\begin{array}{cc}
+1 & 0\\
+0 & \sigma
+\end{array}\right]^{-1}\left[\begin{array}{cc}
+1 & \int W(r)dr\\
+\int W(r)dr & \int W(r)^{2}dr
+\end{array}\right]^{-1}\left[\begin{array}{c}
+W(1)\\
+\frac{1}{2}\left[W(1)^{2}-1\right]
+\end{array}\right]\\
+ & = & \left[\begin{array}{cc}
+\sigma & 0\\
+0 & 1
+\end{array}\right]\left[\begin{array}{cc}
+1 & \int W(r)dr\\
+\int W(r)dr & \int W(r)^{2}dr
+\end{array}\right]^{-1}\left[\begin{array}{c}
+W(1)\\
+\frac{1}{2}\left[W(1)^{2}-1\right]
+\end{array}\right]\\
+ & = & \Delta^{-1}\left[\begin{array}{cc}
+\sigma & 0\\
+0 & 1
+\end{array}\right]\left[\begin{array}{cc}
+\int W(r)^{2}dr & -\int W(r)dr\\
+-\int W(r)dr & 1
+\end{array}\right]\left[\begin{array}{c}
+W(1)\\
+\frac{1}{2}\left[W(1)^{2}-1\right]
+\end{array}\right]\\
+ & with\\
+\Delta & = & \int W(r)^{2}dr-\left[\int W(r)dr\right]^{2}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The second element in the vector states that
+\begin_inset Formula 
+\begin{eqnarray*}
+T\left(\hat{\rho}_{T}-1\right) & \xrightarrow{L} & \frac{\frac{1}{2}\left[W(1)^{2}-1\right]-W(1)\int W(r)dr}{\int W(r)^{2}dr-\left[\int W(r)dr\right]^{2}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Two tricks used in the basic convergence results:
+\end_layout
+
+\begin_layout Enumerate
+Trick 1
+\begin_inset Formula 
+\begin{eqnarray*}
+\int_{\left(t-1\right)/T}^{t/T}1dr & = & \frac{1}{T}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Trick 2
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t-1}\int_{\left(t-1\right)/T}^{t/T}1dr & = & \int_{\left(t-1\right)/T}^{t/T}y_{\left[Tr\right]}dr
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+by these two tricks, first we drive the limiting properties of 
+\begin_inset Formula $\sum y_{t-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t-1} & = & T\cdot y_{t-1}\cdot\frac{1}{T}\\
+ & = & T\cdot y_{t-1}\int_{\left(t-1\right)/T}^{t/T}1dr\\
+ & = & T\int_{\left(t-1\right)/T}^{t/T}y_{\left[Tr\right]}dr\\
+ & = & T^{3/2}\int_{\left(t-1\right)/T}^{t/T}\frac{y_{\left[Tr\right]}}{\sqrt{T}}dr\\
+ & \Longrightarrow\\
+\\
+\sum_{t=1}^{T}y_{t-1} & = & T^{3/2}\int_{0}^{1}\frac{y_{\left[Tr\right]}}{\sqrt{T}}dr\\
+ & \Longrightarrow\\
+T^{-3/2}\sum_{t=1}^{T}y_{t-1} & \xrightarrow{d} & \sigma\int_{0}^{1}B\left(r\right)dr
+\end{eqnarray*}
+
+\end_inset
+
+similarly, 
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t-1}^{2} & = & T\cdot y_{t-1}^{2}\cdot\frac{1}{T}\\
+ & = & T\cdot y_{t-1}^{2}\int_{\left(t-1\right)/T}^{t/T}1dr\\
+ & = & T\int_{\left(t-1\right)/T}^{t/T}y_{\left[Tr\right]}^{2}dr\\
+ & = & T^{2}\int_{\left(t-1\right)/T}^{t/T}\frac{y_{\left[Tr\right]}^{2}}{T}dr\\
+ & \Longrightarrow\\
+\\
+\sum_{t=1}^{T}y_{t-1}^{2} & = & T^{2}\int_{0}^{1}\frac{y_{\left[Tr\right]}^{2}}{T}dr\\
+ & \Longrightarrow\\
+T^{-2}\sum_{t=1}^{T}y_{t-1} & \xrightarrow{d} & \sigma^{2}\int_{0}^{1}B\left(r\right)^{2}dr
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now let's consider the limiting properties of 
+\begin_inset Formula $\sum y_{t-1}\varepsilon_{t}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t} & = & y_{t-1}+\varepsilon_{t}\\
+y_{t}^{2} & = & y_{t-1}^{2}+\varepsilon_{t}^{2}+2y_{t-1}\varepsilon_{t}\\
+ & \Longrightarrow\\
+y_{t-1}\varepsilon_{t} & = & \frac{1}{2}\left(y_{t}^{2}-y_{t-1}^{2}-\varepsilon_{t}^{2}\right)\\
+ & \Longrightarrow\\
+\sum_{t=1}^{T}y_{t-1}\varepsilon_{t} & = & \frac{1}{2}\sum_{t=1}^{T}\left(y_{t}^{2}-y_{t-1}^{2}-\varepsilon_{t}^{2}\right)\\
+ & = & \frac{1}{2}\left[y_{T}^{2}-\sum_{t=1}^{T}\left(\varepsilon_{t}^{2}\right)\right]\\
+ & \Longrightarrow\\
+T^{-1}\sum_{t=1}^{T}y_{t-1}\varepsilon_{t} & = & \frac{1}{2}\left[T^{-1}y_{T}^{2}-T^{-1}\sum_{t=1}^{T}\left(\varepsilon_{t}^{2}\right)\right]\\
+ & \xrightarrow{d} & \frac{1}{2}\left[\sigma^{2}B\left(1\right)^{2}-\sigma_{\varepsilon}^{2}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Based on the results of 
+\begin_inset Formula $\sum y_{t-1}\varepsilon_{t}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sum y_{t-1}^{2}$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{eqnarray*}
+T\left(\hat{\rho}-1\right) & = & \frac{T^{-1}\sum_{t=1}^{T}y_{t-1}\varepsilon_{t}}{T^{-2}\sum_{t=1}^{T}y_{t-1}}\\
+ & \xrightarrow{d} & \frac{\frac{1}{2}\left[\sigma^{2}B\left(1\right)^{2}-\sigma_{\varepsilon}^{2}\right]}{\sigma^{2}\int_{0}^{1}B\left(r\right)^{2}dr}\\
+ & = & \frac{B\left(1\right)^{2}-\frac{\sigma_{\varepsilon}^{2}}{\sigma^{2}}}{2\int_{0}^{1}B\left(r\right)^{2}dr}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the data are serially uncorrelated the limit will be 
+\begin_inset Formula 
+\begin{eqnarray*}
+T\left(\hat{\rho}-1\right) & \xrightarrow{d} & \frac{B\left(1\right)^{2}-1}{2\int_{0}^{1}B\left(r\right)^{2}dr}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a random variable whose distribution does not depend on nuisance
+ parameters and can be tabulated by Monte Carlo simulation.
+ This is called Dickey and Fuller statistics.
+\end_layout
+
+\begin_layout Standard
+Dickey-Fuller Test
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

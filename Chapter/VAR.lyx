@@ -1,0 +1,595 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left(\mathbf{x}_{t}\mid\mathcal{X}_{t-1}\right) & = & \bm{\delta}_{t}+\bm{\Lambda}\bm{x}_{t-1}
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bm{\delta}_{t}$
+\end_inset
+
+ is a nonstochastic 
+\begin_inset Formula $m$
+\end_inset
+
+-vector, and 
+\begin_inset Formula $\bm{\Lambda}$
+\end_inset
+
+ is an 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix of coefficients.
+ Define
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{\varepsilon}_{t} & = & \mathbf{x}_{t}-\bm{\delta}_{t}-\bm{\Lambda}\bm{x}_{t-1}
+\end{eqnarray*}
+
+\end_inset
+
+which is the vector of mean innovations.
+ Note that 
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left(\bm{\varepsilon}_{t}\mid\mathcal{X}_{t-1}\right) & = & \bm{0}
+\end{eqnarray*}
+
+\end_inset
+
+by construction, and hence 
+\begin_inset Formula $E\left(\bm{\varepsilon}_{t}\right)=\bm{0}$
+\end_inset
+
+ by LIE.
+ We use the following represention for VAR(1)
+\begin_inset Formula 
+\begin{eqnarray}
+\mathbf{x}_{t} & = & \bm{\delta}_{t}+\bm{\Lambda}\bm{x}_{t-1}+\bm{\varepsilon}_{t}\label{eq:var1}
+\end{eqnarray}
+
+\end_inset
+
+A DGP is completely specified by (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:var1"
+
+\end_inset
+
+) if a conditional distribution is assigned to 
+\begin_inset Formula $\bm{\varepsilon}_{t}$
+\end_inset
+
+.
+ We make assumption that
+\begin_inset Formula 
+\begin{eqnarray}
+E\left(\bm{\varepsilon}_{t}\bm{\varepsilon}_{t}^{\prime}\mid\mathcal{X}_{t-1}\right) & = & \bm{\Omega}_{\varepsilon}\label{eq:var2}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bm{\Omega}_{\varepsilon}$
+\end_inset
+
+ is a constant matrix, hence equal to the unconditional variance matrix
+ of 
+\begin_inset Formula $\bm{\varepsilon}_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+The Structural Form
+\end_layout
+
+\begin_layout Standard
+Conditional mean equations do not directly represent the behavior and technical
+ relationships specified by economic theory.
+ These may be both contemporancous and dynamic in character.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{B}E\left(\mathbf{x}_{t}\mid\mathcal{X}_{t-1}\right) & = & \bm{\Gamma d}_{t}+\bm{C}\bm{x}_{t-1}
+\end{eqnarray*}
+
+\end_inset
+
+or 
+\begin_inset Formula 
+\begin{eqnarray}
+\bm{B}\mathbf{x}_{t} & = & \bm{\Gamma d}_{t}+\bm{C}\bm{x}_{t-1}+\bm{u}_{t}\label{eq:var3}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $|\bm{B}|\neq0$
+\end_inset
+
+, 
+\begin_inset Formula $E\left(\bm{u}_{t}\mid\mathcal{X}_{t-1}\right)=\bm{0}$
+\end_inset
+
+.
+ The vector 
+\begin_inset Formula $\bm{d}_{t}$
+\end_inset
+
+ consists of dummy variables.
+ Define 
+\begin_inset Formula $E\left(\bm{u}_{t}\bm{u}_{t}^{\prime}\mid\mathcal{X}_{t-1}\right)=\bm{\Sigma}$
+\end_inset
+
+.
+ The relations between the structural and reduced form parameters are given
+ by
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{\Lambda} & = & \bm{B}^{-1}\bm{C}\\
+\bm{\delta}_{t} & = & \bm{B}^{-1}\bm{\Gamma d}_{t}\\
+\bm{\varepsilon}_{t} & = & \bm{B}^{-1}\bm{u}_{t}\\
+\bm{\Omega}_{\varepsilon} & = & \bm{B}^{-1}\bm{\Sigma}\left(\bm{B}^{\prime}\right)^{-1}
+\end{eqnarray*}
+
+\end_inset
+
+Many different structures correpsonding to different matrices 
+\begin_inset Formula $\bm{B}$
+\end_inset
+
+ can correspond to the same VAR equation.
+ However, there may be restrictions on 
+\begin_inset Formula $\bm{B}$
+\end_inset
+
+, 
+\begin_inset Formula $\bm{C}$
+\end_inset
+
+, 
+\begin_inset Formula $\bm{\Gamma}$
+\end_inset
+
+, and 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+ that allow us to distinguish one structure from another, such as the omission
+ of certain variables from certain equations (zeros restrictions).
+\end_layout
+
+\begin_layout Paragraph
+A Simple Keynesian Model
+\end_layout
+
+\begin_layout Enumerate
+A measurement identity in the national accounts and its counterpart 
+\begin_inset Formula 
+\begin{eqnarray*}
+Y_{t} & \equiv & C_{t}+I_{t}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Assume linearity of the consumption function 
+\begin_inset Formula 
+\begin{eqnarray*}
+C_{t} & = & \alpha+\beta Y_{t}+u_{1t}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+An autonomous investment process 
+\begin_inset Formula 
+\begin{eqnarray*}
+I_{t} & = & \delta+\gamma I_{t-1}+u_{2t}
+\end{eqnarray*}
+
+\end_inset
+
+Then we have
+\begin_inset Formula 
+\begin{eqnarray*}
+Y_{t}\left(1-\beta\right) & = & \alpha+I_{t}+u_{1t}\\
+I_{t} & = & \delta+\gamma I_{t-1}+u_{2t}
+\end{eqnarray*}
+
+\end_inset
+
+Then it can be written as
+\begin_inset Formula 
+\begin{eqnarray*}
+Y_{t}\left(1-\beta\right)-I_{t} & = & \alpha+0Y_{t-1}+0I_{t-\text{1}}+u_{1t}\\
+0Y_{t}+I_{t} & = & \delta+0Y_{t-1}+\gamma I_{t-1}+u_{2t}
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\left[\begin{array}{cc}
+1-\beta & -1\\
+0 & 1
+\end{array}\right]\left[\begin{array}{c}
+Y_{t}\\
+I_{t}
+\end{array}\right] & = & \left[\begin{array}{c}
+\alpha\\
+\delta
+\end{array}\right]1+\left[\begin{array}{cc}
+0 & 0\\
+0 & \gamma
+\end{array}\right]\left[\begin{array}{c}
+Y_{t-1}\\
+I_{t-1}
+\end{array}\right]+\left[\begin{array}{c}
+u_{1t}\\
+u_{2t}
+\end{array}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Distribution of the VAR Process
+\end_layout
+
+\begin_layout Standard
+The model specifies the conditional distribution of 
+\begin_inset Formula $\mathbf{x}_{t}\mid\mathcal{X}_{t-1}$
+\end_inset
+
+.
+ An important step in the analysis is to determine from this the distribution
+ of the sequence 
+\begin_inset Formula $\left\{ \mathbf{x}_{t}\right\} $
+\end_inset
+
+ as a whole, for example, the moments 
+\begin_inset Formula $E\left(\mathbf{x}_{t}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $Var\left(\mathbf{x}_{t}\right)$
+\end_inset
+
+, assuming these exist.
+\end_layout
+
+\begin_layout Subsection
+Stability Conditions
+\end_layout
+
+\begin_layout Standard
+Consider 
+\begin_inset Formula $E\left(\mathbf{x}_{t}\right)$
+\end_inset
+
+ first by repeated substitution
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left(\mathbf{x}_{t}\right) & = & \bm{\delta}_{t}+\bm{\Lambda}E\left(\mathbf{x}_{t}\right)\\
+ & = & \bm{\delta}_{t}+\bm{\Lambda}\bm{\delta}_{t-1}+\bm{\Lambda}^{2}E\left(\mathbf{x}_{t-2}\right)\\
+ & = & \bm{\delta}_{t}+\bm{\Lambda}\bm{\delta}_{t-1}+\bm{\Lambda}\bm{\delta}_{t-2}+\bm{\Lambda}^{3}E\left(\mathbf{x}_{t-3}\right)\\
+ & = & \cdots\\
+ & = & \sum_{j=0}^{n-1}\bm{\Lambda}^{j}\bm{\delta}_{t-j}+\bm{\Lambda}^{n}E\left(\mathbf{x}_{t-n}\right)
+\end{eqnarray*}
+
+\end_inset
+
+clearly, the value of this sum depdents on the behaviour of 
+\begin_inset Formula $\bm{\Lambda}^{n}$
+\end_inset
+
+ as 
+\begin_inset Formula $n$
+\end_inset
+
+ increases.
+ Let 
+\begin_inset Formula $\mu_{1},\dots,\mu_{m}$
+\end_inset
+
+ be the eigenvalues of 
+\begin_inset Formula $\bm{\Lambda}$
+\end_inset
+
+, the solutions to the characteristic equation 
+\begin_inset Formula $|\bm{\Lambda}-\mu\bm{I}_{m}|=0$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\bm{\Lambda}$
+\end_inset
+
+ can be decomposed as
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{\Lambda} & = & \bm{Q}\bm{M}\bm{Q}^{-1}
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bm{M}$
+\end_inset
+
+ is the diagonal matrix with the eugenvalues on the diagonal, if these are
+ all distinct.
+ Then 
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{\Lambda}^{n} & = & \bm{Q}\bm{M}^{n}\bm{Q}^{-1}
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bm{M}^{n}=diag\left\{ \mu_{1}^{n},\cdots,\mu_{m}^{n}\right\} $
+\end_inset
+
+.
+ If 
+\begin_inset Formula $|\mu_{i}|<1$
+\end_inset
+
+ for all 
+\begin_inset Formula $i=1,\dots,m$
+\end_inset
+
+, 
+\begin_inset Formula $\bm{\Lambda}^{n}\to\bm{0}$
+\end_inset
+
+ as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Even if 
+\begin_inset Formula $\bm{M}$
+\end_inset
+
+ is not diagonal but has the Jordan norm form, it is easy to show that the
+ same result applies.
+\end_layout
+
+\begin_layout Subsection
+The Mean and Variance
+\end_layout
+
+\begin_layout Paragraph
+Mean
+\end_layout
+
+\begin_layout Standard
+Subject to convergence of 
+\begin_inset Formula $\bm{\Lambda}^{n}\to\bm{0}$
+\end_inset
+
+ as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left(\mathbf{x}_{t}\right) & = & \bm{\mu}_{t}=\sum_{j=0}^{\infty}\bm{\Lambda}^{j}\bm{\delta}_{t-j}
+\end{eqnarray*}
+
+\end_inset
+
+if 
+\begin_inset Formula $\bm{\delta}_{t}=\bm{\delta}$
+\end_inset
+
+, then let the mean be 
+\begin_inset Formula $\bm{\mu_{x}}$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{eqnarray}
+\bm{\mu_{x}} & = & \left(\bm{I}-\bm{\Lambda}\right)^{-1}\bm{\delta}\label{eq:var4}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Variance
+\end_layout
+
+\begin_layout Standard
+In mean deviation form the process is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{x_{t}-}\bm{\mu}_{t} & = & \bm{\delta}_{t}+\bm{\Lambda}\bm{x}_{t-1}+\bm{\varepsilon}_{t}-\left(\bm{\delta}_{t}+\bm{\Lambda}\bm{\mu}_{t-1}\right)\\
+ & = & \bm{\Lambda}\left(\bm{x}_{t-1}-\bm{\mu}_{t-1}\right)+\bm{\varepsilon}_{t}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Put 
+\begin_inset Formula $\bm{\delta}_{t}=\bm{0}$
+\end_inset
+
+ for all 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Substituting repeatedly gives
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{x}_{t} & = & \bm{\varepsilon}_{t}+\bm{\Lambda}\bm{\varepsilon}_{t-1}+\cdots+\bm{\Lambda}^{n-1}\bm{\varepsilon}_{t-n+1}+\bm{\Lambda}^{n}\bm{\varepsilon}_{t-n}
+\end{eqnarray*}
+
+\end_inset
+
+and assuming stability the final term can be neglected as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+.
+ Since
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(\bm{\varepsilon}_{t-j}\bm{\varepsilon}_{t-k}^{\prime}\right)=\begin{cases}
+\bm{\Omega}_{\varepsilon} & j=k\\
+\bm{0} & j\neq k
+\end{cases}
+\]
+
+\end_inset
+
+it follows that
+\begin_inset Formula 
+\begin{eqnarray*}
+E\left(\bm{x}_{t}\bm{x}_{t}^{\prime}\right) & = & E\left(\bm{\varepsilon}_{t}+\bm{\Lambda}\bm{\varepsilon}_{t-1}+\bm{\Lambda}\bm{\varepsilon}_{t-2}^{2}+\cdots\right)\left(\bm{\varepsilon}_{t}+\bm{\Lambda}\bm{\varepsilon}_{t-1}+\bm{\Lambda}\bm{\varepsilon}_{t-2}^{2}+\cdots\right)^{\prime}\\
+ & = & \sum_{j=0}^{\infty}E\left[\bm{\Lambda}^{j}\bm{\varepsilon}_{t-1}\bm{\varepsilon}_{t-1}^{\prime}\left(\bm{\Lambda}^{\prime}\right)^{j}\right]\\
+\bm{\Omega} & = & \sum_{j=0}^{\infty}\bm{\Lambda}^{j}\bm{\Omega}_{\varepsilon}\left(\bm{\Lambda}^{\prime}\right)^{j}
+\end{eqnarray*}
+
+\end_inset
+
+Another way 
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{\Omega} & = & E\left(\bm{\Lambda}\bm{x}_{t-1}+\bm{\varepsilon}_{t}\right)\left(\bm{\Lambda}\bm{x}_{t-1}+\bm{\varepsilon}_{t}\right)^{\prime}\\
+ & = & \bm{\Lambda}\bm{\Omega}\bm{\Lambda}^{\prime}+\bm{\Omega}_{\varepsilon}
+\end{eqnarray*}
+
+\end_inset
+
+Here we use the properties of Vec and Kronecker product
+\begin_inset Formula 
+\begin{eqnarray*}
+VecABC & = & \left(C^{\prime}\otimes A\right)VecB
+\end{eqnarray*}
+
+\end_inset
+
+Then we can write down the closed form 
+\begin_inset Formula 
+\begin{eqnarray*}
+Vec\bm{\Omega} & = & \left(\bm{\Lambda}\otimes\bm{\Lambda}\right)Vec\bm{\Omega}+Vec\bm{\Omega}_{\varepsilon}\\
+\left[\bm{I}_{m^{2}}-\left(\bm{\Lambda}\otimes\bm{\Lambda}\right)\right]Vec\bm{\Omega} & = & Vec\bm{\Omega}_{\varepsilon}\\
+ & \Longrightarrow\\
+Vec\bm{\Omega} & = & \left(\bm{I}_{m^{2}}-\bm{\Lambda}\otimes\bm{\Lambda}\right)Vec\bm{\Omega}_{\varepsilon}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

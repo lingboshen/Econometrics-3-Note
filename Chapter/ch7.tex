@@ -1,0 +1,25 @@
+\section[Time Series Models of Heteroskedasticity]{Time Series Models of Heteroskedasticity}
+\subsection{Autoregressive Conditional Heteroskedasticity}
+For an $AR(p)$ model
+\begin{eqnarray*}
+y_{t}&=&c+\phi_{1} y_{t-1}+\phi_{2} y_{t-2}+\cdots+\phi_{p} y_{t-p}+u_{t}
+\end{eqnarray*}
+where $u_{t}$ is white noise
+\begin{eqnarray*}
+E(u_{t})&=&0\\
+E(u_{t}u_{\tau})&=&\begin{cases}
+\sigma^{2}&t=\tau\\
+0&\text{otherwise}
+\end{cases}
+\end{eqnarray*}
+The optimal linear forecast of the level of $y_{t}$ is 
+\begin{eqnarray*}
+\widehat{E}(y_{t}\mid y_{t-1},y_{t-2},\dots)&=&c+\phi_{1} y_{t-1}+\phi_{2} y_{t-2}+\cdots+\phi_{p} y_{t-p}
+\end{eqnarray*}
+Although the conditional mean of $y_{t}$ changes over time, the unconditional mean of covariance stationary process $y_{t}$ is constant
+\begin{eqnarray*}
+E(y_{t})&=&c/(1-\phi_{1}-\phi_{2}-\cdots-\phi_{p})
+\end{eqnarray*}
+
+\textbf{Sometimes we are interested in forecasting the variance.}
+Although we assume that the unconditional variance of $u_{t}$ is constant $\sigma^{2}$, the conditional variance of $u_{t}$ could change over time. 
