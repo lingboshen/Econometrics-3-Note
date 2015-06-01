@@ -471,7 +471,83 @@ For FE model
 
 even the conditional mean is not identified.
  For not time-varying regressors, e.g.
- race or gender, the marginal effect 
+ race or gender, the marginal effect is not identified.
+\end_layout
+
+\begin_layout Subsection
+Panel Data Estimators
+\end_layout
+
+\begin_layout Standard
+A regressors 
+\begin_inset Formula $x_{it}$
+\end_inset
+
+ may be either 
+\series bold
+time-invariant
+\series default
+, with 
+\begin_inset Formula $x_{it}=x_{i}$
+\end_inset
+
+, for 
+\begin_inset Formula $t=1,\dots,T$
+\end_inset
+
+, or 
+\series bold
+time-varying
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection
+Pooled OLS
+\end_layout
+
+\begin_layout Standard
+The pooled OLS estimator is obtained by stacking the data over 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $t$
+\end_inset
+
+ into one long regression with 
+\begin_inset Formula $NT$
+\end_inset
+
+ observations, and estimating by OLS
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{it} & = & \alpha+\bm{x}_{it}^{\prime}\bm{\beta}+u_{it},\;i=1,\dots,N,\:t=1,\dots,T
+\end{eqnarray*}
+
+\end_inset
+
+If the model (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:pd1"
+
+\end_inset
+
+) is appropriate 
+\begin_inset Formula $Cov\left[u_{it},\bm{x}_{it}\right]=\bm{0}$
+\end_inset
+
+ then either 
+\begin_inset Formula $N\to\infty$
+\end_inset
+
+ or 
+\begin_inset Formula $T\to\infty$
+\end_inset
+
+ is sufficient for consistency.
+ 
 \end_layout
 
 \end_body
