@@ -943,9 +943,9 @@ It is convenient to stack observations over time periods for a given individuals
 , leading to
 \begin_inset Formula 
 \begin{eqnarray*}
-\widetilde{y}_{i} & = & \widetilde{\bm{w}}_{i}\bm{\theta}+\widetilde{\bm{u}}_{i}\\
+\widetilde{\bm{y}}_{i} & = & \widetilde{\bm{w}}_{i}\bm{\theta}+\widetilde{\bm{u}}_{i}\\
  & where\\
-\widetilde{y} & : & \text{\ensuremath{T\times1} vector}\\
+\widetilde{\bm{y}}_{i} & : & \text{\ensuremath{T\times1} vector}\\
 \widetilde{\bm{w}}_{i} & : & \ensuremath{T\times q}
 \end{eqnarray*}
 
@@ -979,6 +979,149 @@ The OLS estimator are therefore
 
 The following matrix form equation illustrates the structure of 
 \begin_inset Formula $\widetilde{\bm{y}}=\widetilde{\bm{w}}\bm{\theta}+\widetilde{\bm{u}}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\bm{y} & = & \bm{w}\bm{\theta}+\bm{u}\\
+\left[\begin{array}{c}
+\bm{y}_{1}=\begin{cases}
+y_{11}\\
+y_{12}\\
+\vdots\\
+y_{1T}
+\end{cases}\\
+\bm{y}_{2}=\begin{cases}
+y_{21}\\
+y_{22}\\
+\vdots\\
+y_{2T}
+\end{cases}\\
+\vdots\\
+\vdots\\
+\bm{y}_{N}=\begin{cases}
+y_{N1}\\
+y_{N2}\\
+\vdots\\
+y_{NT}
+\end{cases}
+\end{array}\right] & =\left[\begin{array}{c}
+\bm{w}_{1}=\begin{cases}
+x_{111}\;x_{112}\cdots & x_{11q}=w_{11}^{\prime}\\
+x_{121}\;x_{122}\cdots & x_{12q}=w_{12}^{\prime}\\
+\vdots & \vdots\\
+x_{1T1}\;x_{1T2}\cdots & x_{1Tq}=w_{1T}^{\prime}
+\end{cases}\\
+\bm{w}_{2}=\begin{cases}
+x_{211}\;x_{212}\cdots & x_{21q}=w_{21}^{\prime}\\
+x_{221}\;x_{222}\cdots & x_{22q}=w_{22}^{\prime}\\
+\vdots & \vdots\\
+x_{2T1}\;x_{2T2}\cdots & x_{2Tq}=w_{2T}^{\prime}
+\end{cases}\\
+\vdots\\
+\vdots\\
+\bm{w}_{N}=\begin{cases}
+x_{N11}\;x_{N12}\cdots & x_{N1q}=w_{N1}^{\prime}\\
+x_{N21}\;x_{N22}\cdots & x_{N2q}=w_{N2}^{\prime}\\
+\vdots & \vdots\\
+x_{NT1}\;x_{NT2}\cdots & x_{NTq}=w_{NT}^{\prime}
+\end{cases}
+\end{array}\right]\left[\begin{array}{c}
+\theta_{1}\\
+\theta_{2}\\
+\vdots\\
+\theta_{q}
+\end{array}\right]+ & \left[\begin{array}{c}
+\bm{u}_{1}=\begin{cases}
+u_{11}\\
+u_{12}\\
+\vdots\\
+u_{1T}
+\end{cases}\\
+\bm{u}_{2}=\begin{cases}
+u_{21}\\
+u_{22}\\
+\vdots\\
+u_{2T}
+\end{cases}\\
+\vdots\\
+\vdots\\
+\bm{u}_{N}=\begin{cases}
+u_{N1}\\
+u_{N2}\\
+\vdots\\
+u_{NT}
+\end{cases}
+\end{array}\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Consistency
+\end_layout
+
+\begin_layout Standard
+If the model is correctly specified then 
+\begin_inset Formula 
+\begin{eqnarray*}
+\widehat{\bm{\theta}}_{OLS} & = & \bm{\theta}+\left[\widetilde{\bm{w}}^{\prime}\widetilde{\bm{w}}\right]^{-1}\widetilde{\bm{w}}^{\prime}\widetilde{\bm{u}}\\
+ & = & \bm{\theta}+\left[\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{w}}_{i}\right]^{-1}\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{u}}_{i}
+\end{eqnarray*}
+
+\end_inset
+
+Given independence over 
+\begin_inset Formula $i$
+\end_inset
+
+ the essential condition for onsistency is 
+\begin_inset Formula $\mathbb{E}\left[\widetilde{\bm{w}}^{\prime}\widetilde{\bm{u}}\right]=\bm{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The asymptotic variance of 
+\begin_inset Formula $\widehat{\bm{\theta}}_{OLS}$
+\end_inset
+
+ is then 
+\begin_inset Formula 
+\begin{eqnarray*}
+Var\left[\widehat{\bm{\theta}}_{OLS}\right] & = & \left[\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{w}}_{i}\right]^{-1}\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\mathbb{E}\left[\widetilde{\bm{u}}_{i}\widetilde{\bm{u}}_{i}^{\prime}\mid\widetilde{\bm{w}}_{i}\right]\widetilde{\bm{w}}_{i}\left[\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{w}}_{i}\right]^{-1}
+\end{eqnarray*}
+
+\end_inset
+
+given independence of errors over 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+panel-robust estimate
+\series default
+ of the asymptotoc variance matrix of pooled OLS estimator is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\widehat{Var\left[\widehat{\bm{\theta}}_{OLS}\right]} & = & \left[\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{w}}_{i}\right]^{-1}\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widehat{\bm{u}}_{i}\widehat{\bm{u}}_{i}^{\prime}\widetilde{\bm{w}}_{i}\left[\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{w}}_{i}\right]^{-1}\\
+ & = & \left[\sum_{i=1}^{N}\sum_{t=1}^{T}\widetilde{\bm{w}}_{it}\widetilde{\bm{w}}_{it}^{\prime}\right]^{-1}\sum_{i=1}^{N}\sum_{t=1}^{T}\sum_{s=1}^{T}\widetilde{\bm{w}}_{it}\widetilde{\bm{w}}_{is}^{\prime}\widehat{\bm{u}}_{it}\widehat{\bm{u}}_{is}\left[\sum_{i=1}^{N}\sum_{t=1}^{T}\widetilde{\bm{w}}_{it}\widetilde{\bm{w}}_{it}^{\prime}\right]^{-1}\\
+ & where\\
+\widehat{\bm{u}}_{i} & = & \widetilde{\bm{y}}_{i}-\widetilde{\bm{w}}_{i}\widehat{\bm{\theta}}\\
+\widehat{\bm{u}}_{it} & = & \widetilde{\bm{y}}_{it}-\widetilde{\bm{w}}_{it}^{\prime}\widehat{\bm{\theta}}
+\end{eqnarray*}
+
 \end_inset
 
 
