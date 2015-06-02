@@ -4,7 +4,7 @@
 \begin_header
 \textclass article
 \begin_preamble
-\linespread{1.3}
+\linespread{1.2}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -423,7 +423,7 @@ for
 \begin_inset Formula $t-s$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Paragraph
@@ -829,6 +829,155 @@ reference "eq:pd7"
 ).
  This estimator yields consistent estimates in the fixed effects model,
  though the coefficients of time-invariant regressors are not identified.
+\end_layout
+
+\begin_layout Subsection
+Panel Robust Statistical Inference
+\end_layout
+
+\begin_layout Standard
+The various panel models include error terms denoted 
+\begin_inset Formula $u_{it}$
+\end_inset
+
+, 
+\begin_inset Formula $\varepsilon_{it}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+.
+ It is reasonable to assume independence over 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ However, the errors are potentially 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+serially correlated
+\series default
+(correlated over 
+\begin_inset Formula $t$
+\end_inset
+
+ for given 
+\begin_inset Formula $i$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+heteroskedastic
+\end_layout
+
+\begin_layout Standard
+we need to control these factors to get valid statistical inference.
+\end_layout
+
+\begin_layout Subsubsection
+Panel Robust Sandwich Standard Errors
+\end_layout
+
+\begin_layout Standard
+The panel estimators which introduced above can be obtained by OLS estimation
+ of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+ in the pooled regression
+\begin_inset Formula 
+\begin{eqnarray}
+\widetilde{y}_{it} & = & \widetilde{\bm{w}}_{it}^{\prime}\bm{\theta}+\widetilde{u}_{it}\label{eq:pd9}
+\end{eqnarray}
+
+\end_inset
+
+where different panel estimators correspond to different transformations
+ 
+\begin_inset Formula $\widetilde{y}_{it}$
+\end_inset
+
+, 
+\begin_inset Formula $\widetilde{\bm{w}}_{it}$
+\end_inset
+
+, 
+\begin_inset Formula $\widetilde{u}_{it}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{it}$
+\end_inset
+
+, 
+\begin_inset Formula $\bm{w}_{it}^{\prime}=\left[1\,\bm{x}_{it}^{\prime}\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $u_{it}$
+\end_inset
+
+.
+ The key is that 
+\begin_inset Formula $\widetilde{y}_{it}$
+\end_inset
+
+ is a known function of only 
+\begin_inset Formula $y_{i1},\dots,y_{iT}$
+\end_inset
+
+, and similarly for others.
+\end_layout
+
+\begin_layout Standard
+It is convenient to stack observations over time periods for a given individuals
+, leading to
+\begin_inset Formula 
+\begin{eqnarray*}
+\widetilde{y}_{i} & = & \widetilde{\bm{w}}_{i}\bm{\theta}+\widetilde{\bm{u}}_{i}\\
+ & where\\
+\widetilde{y} & : & \text{\ensuremath{T\times1} vector}\\
+\widetilde{\bm{w}}_{i} & : & \ensuremath{T\times q}
+\end{eqnarray*}
+
+\end_inset
+
+Further stacking over the 
+\begin_inset Formula $N$
+\end_inset
+
+ invididuals yields 
+\begin_inset Formula 
+\begin{eqnarray*}
+\widetilde{\bm{y}} & = & \widetilde{\bm{w}}\bm{\theta}+\widetilde{\bm{u}}
+\end{eqnarray*}
+
+\end_inset
+
+The OLS estimator are therefore
+\begin_inset Formula 
+\begin{eqnarray*}
+\widehat{\bm{\theta}}_{OLS} & = & \left[\widetilde{\bm{w}}^{\prime}\widetilde{\bm{w}}\right]^{-1}\widetilde{\bm{w}}^{\prime}\widetilde{\bm{y}}\\
+ & = & \left[\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{w}}_{i}\right]^{-1}\sum_{i=1}^{N}\widetilde{\bm{w}}_{i}^{\prime}\widetilde{\bm{y}}_{i}\\
+ & = & \left[\sum_{i=1}^{N}\sum_{t=1}^{T}\widetilde{\bm{w}}_{it}\widetilde{\bm{w}}_{it}^{\prime}\right]^{-1}\sum_{i=1}^{N}\sum_{t=1}^{T}\widetilde{\bm{w}}_{it}\widetilde{\bm{y}}_{it}\\
+ & where\\
+\widetilde{\bm{w}} & : & NT\times q\\
+\widetilde{\bm{w}}_{i} & : & T\times q\\
+\widetilde{\bm{w}}_{it} & : & 1\times q
+\end{eqnarray*}
+
+\end_inset
+
+The following matrix form equation illustrates the structure of 
 \end_layout
 
 \end_body
